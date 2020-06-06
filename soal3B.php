@@ -229,6 +229,7 @@
 		var target = "soal3B/delete_action.php";
 		var data = {
 						"id_product" : param,
+						
 					}
 		$.post(target, data, function(response){
 			console.log(response);

@@ -1,16 +1,20 @@
 <?php 			
 	include '../koneksi.php';
 	$id_product = $_POST['id_product'];
-	$action = $_POST['action'];
-
+	if($id_product == 0){
+		$tittle = "ADD";
+	}else{
+		$tittle = "Edit";
+	}
 ?>
 <form action="" method="POST"> 	
 	<div class="modal-header">
 	  <button type="button" class="close" data-dismiss="modal">&times;</button>
-	  <h4 class="modal-title">ADD</h4>
+	  <h4 class="modal-title"><?= $tittle ?></h4>
 	</div>
 	<div class="modal-body">
-		<?php if($id_product == 0){ ?>
+		<?php if($id_product == 0){ 
+			$button = "Add"; ?>
 		  	<table class="table table-modal-arka">
 			  	<tr>
 			  		<td>
@@ -48,7 +52,7 @@
 			  	</tr>
 
 		  	</table>
-		 <?php }elseif($id_product != 0){ ?>
+		 <?php }elseif($id_product != 0){ $button = "Edit"; ?>
 		 	<?php
 				$product = mysqli_query($koneksi,"SELECT * from product where id = $id_product");
 				foreach ($product as $data_product) {
@@ -106,6 +110,6 @@
 		 <?php } ?>
 	</div>
 	<div class="modal-footer">
-	  <button type="submit" class="btn btn-warning btn-arka" >ADD</button>
+	  <button type="submit" class="btn btn-warning btn-arka" ><?= $button ?></button>
 	</div>
 </form>
